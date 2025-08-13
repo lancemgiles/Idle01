@@ -1,0 +1,15 @@
+IDEA:
+	the player is a bacterium (or just generally a microbe that divides - maybe offer different choices?)
+	player consumes nutrients
+	uses nutrients to divide
+	nutrient deposits can last for a long time and once part of the colony has started to eat it, the player doesn't need to interact with it for it to continue eating
+		this continues even if the game is not being played
+	player grows as they eat and can choose branches towards more food to "build" using nutrients
+	different branches have different amounts of nutrient piles
+	optional ads can give you more nutrients
+	
+LOGIC:
+	tilemap level showing vague, liquidy environments that vary across levels
+	after player reaches a certain size, level is completed
+	button-based controls:
+		nutrient deposit
