@@ -8,6 +8,32 @@ IDEA:
 	different branches have different amounts of nutrient piles
 	optional ads can give you more nutrients
 	
+	NEW:
+		cozy atomsphere but vaguely post-apocalyptic world in a strictly anti-capitalist system
+		the player (to keep it cozy, they should be an animal or magical creature - maybe as couple so you can always have two actions going?) sifts through trash basically and finds various parts
+		the parts are then used to repair devices
+		EX:
+			player begins with a wrench and a windmill that needs a bolt tightened in a run down old house
+			pile of rubbage near the windmill has scrap metal
+			poking around in the house reveals an old machine shop, and the player can manually run it to turn the scrap metal into bolts
+			use the bolts to fix fix the windmill, allows them to generate electricity
+			electricity lets the player use the machine tools and it only takes time, not clicks
+			some days aren't very windy
+			cleaning through the old house yeilds more scrap metal and stuff and the player finds a metal shop
+			can smelt metal objects and shape them (skill builds here, maybe this is a different kind of mini game)
+			smelted metal can be used as stock in the machine tools
+			surplus materials can be traded with NPCs for other materials, but there's no market and sometimes people just owe each other, and sometimes they decide to forget the debt
+			NPCs will have stuff they want fixed too
+				each level is more or less about helping some person, usually for no reward
+GRAPHICS
+	cozy pixel art
+	16x32 sprite is too small, 32x64 sprites and 32x32 items feels nice but is still a bit small really
+		the problem with these larger sizes is that each asset will take a long time to make - I want to produce this game more quickly and so if 16x32 is too small, maybe try 24x24 or make the game canvas smaller
+		same for the tiles - 32x32 can look great but is probably too big and too detailed for my goal with this project
+		16x16 sprites and items with 16x16 tiles
+		currently using nanner 32 palette
+			
+	
 LOGIC:
 	tilemap level showing vague, liquidy environments that vary across levels
 	after player reaches a certain size, level is completed

@@ -11,14 +11,18 @@ config_version=5
 [application]
 
 config/name="Microcosmos"
+run/main_scene="uid://b2isa82sqwxbf"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=360
+window/size/viewport_width=400
 window/size/viewport_height=640
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

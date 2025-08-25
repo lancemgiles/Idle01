@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtxlrkxsixvdt"]
+[gd_scene load_steps=3 format=3 uid="uid://dtxlrkxsixvdt"]
 
 [ext_resource type="Script" uid="uid://dg6qvcgytdk50" path="res://proto/proto_generator.gd" id="1_ao4mu"]
+[ext_resource type="Script" uid="uid://cslqbldx7jhwx" path="res://ui/food_label.gd" id="2_vd1qx"]
 
-[node name="ProtoGenerator" type="Control" node_paths=PackedStringArray("label", "button", "timer")]
+[node name="ProtoGenerator" type="Control" node_paths=PackedStringArray("button", "timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ao4mu")
-label = NodePath("Label")
 button = NodePath("Button")
 timer = NodePath("Timer")
 
@@ -40,6 +40,7 @@ grow_horizontal = 2
 theme_type_variation = &"HeaderLarge"
 text = "food: x"
 horizontal_alignment = 1
+script = ExtResource("2_vd1qx")
 
 [node name="Timer" type="Timer" parent="."]
 

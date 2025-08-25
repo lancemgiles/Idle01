@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcxeqpn4t862x"]
+[gd_scene load_steps=3 format=3 uid="uid://dcxeqpn4t862x"]
 
 [ext_resource type="Script" uid="uid://b8kn6ykvqpr4p" path="res://proto/proto_clicker.gd" id="1_t7kyg"]
+[ext_resource type="Script" uid="uid://cslqbldx7jhwx" path="res://ui/food_label.gd" id="2_syhy4"]
 
-[node name="ProtoClicker" type="Control" node_paths=PackedStringArray("label")]
+[node name="ProtoClicker" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7kyg")
-label = NodePath("Label")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(64, 40)
@@ -38,5 +38,6 @@ grow_horizontal = 2
 theme_type_variation = &"HeaderLarge"
 text = "food: x"
 horizontal_alignment = 1
+script = ExtResource("2_syhy4")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
