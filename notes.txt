@@ -33,6 +33,11 @@ GRAPHICS
 		16x16 sprites and items with 16x16 tiles
 		currently using nanner 32 palette
 			
+	NEW:
+		sticking to my placeholder resources might be fun where it just about gathering food and drinks and any story stuff is just implied (mostly finding fruit and vegetables but sometimes old cans of beans and ancient spices)
+		cooking mini games
+		optional ads for gathering speed boosts
+		can leave mouse protagonist as but no larger world is really required to get this off the ground
 	
 LOGIC:
 	tilemap level showing vague, liquidy environments that vary across levels

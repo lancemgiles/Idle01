@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cc11qj4ukcd5y" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dt52wgj6bt60g" path="res://ui/UI.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://pqrl21jbmorf" path="res://proto/handler_food.gd" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://bu8sme45w5cu0" path="res://proto/handler_growth.gd" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://igcuj7x84yui" path="res://proto/handler_growth_upgrades.gd" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://bdbawydmb1dac" path="res://proto/handler_food_generator.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://pqrl21jbmorf" path="res://proto/handlers/handler_food.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bu8sme45w5cu0" path="res://proto/handlers/handler_growth.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://igcuj7x84yui" path="res://proto/handlers/handler_growth_upgrades.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://bdbawydmb1dac" path="res://proto/handlers/handler_food_generator.gd" id="6_7mycd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")

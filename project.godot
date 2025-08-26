@@ -17,12 +17,19 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=640
-window/stretch/mode="canvas_items"
+window/size/viewport_width=180
+window/size/viewport_height=416
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 window/handheld/orientation=1
+
+[gui]
+
+theme/custom="uid://b4jl86103bh4f"
+theme/custom_font="uid://cf2y4icxs5mok"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

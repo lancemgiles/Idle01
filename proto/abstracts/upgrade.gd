@@ -23,3 +23,7 @@ func can_afford() -> bool:
 ## Virtual class, must be overwritten.
 func level_up() -> void:
 	printerr("level_up method not defined")
+
+## Virtual class, returns whether or not upgrade has been unlocked.
+func is_unlocked() -> bool:
+	return false

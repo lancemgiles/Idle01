@@ -37,3 +37,7 @@ func level_up() -> void:
 			Main.ref.data.growth_upgrades.u_01_food_generator_level = true
 			leveled_up.emit()
 			HandlerGrowthUpgrades.ref.upgrade_leveled_up.emit(self)
+			
+## Virtual class, returns whether or not upgrade has been unlocked.
+func is_unlocked() -> bool:
+	return true
