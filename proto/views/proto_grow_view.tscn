@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv2jmda7j2v25"]
+[gd_scene load_steps=4 format=3 uid="uid://dv2jmda7j2v25"]
 
-[ext_resource type="Script" uid="uid://05ssfcumot16" path="res://proto/prototypes/proto_grow_view.gd" id="1_hujf3"]
+[ext_resource type="Script" uid="uid://05ssfcumot16" path="res://proto/views/proto_grow_view.gd" id="1_hujf3"]
 [ext_resource type="PackedScene" uid="uid://cllakustggs0k" path="res://proto/upgrades/components/compo_upgrade.tscn" id="2_hweh3"]
+[ext_resource type="PackedScene" uid="uid://cmsq8brlwbnwt" path="res://ui/growth_progress_bar.tscn" id="3_e0jyx"]
 
 [node name="ProtoGrowView" type="Control" node_paths=PackedStringArray("growth_up_area")]
 layout_mode = 3
@@ -42,4 +43,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GrowthUpgrades" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GrowthProgressBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_e0jyx")]
 layout_mode = 2

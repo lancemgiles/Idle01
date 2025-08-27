@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmsq8brlwbnwt"]
+
+[ext_resource type="Script" uid="uid://ok1mmuwhld5j" path="res://proto/views/food_milestone_progress.gd" id="1_mgiq0"]
+
+[node name="GrowthProgressBar" type="ProgressBar" node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(0, 16)
+show_percentage = false
+script = ExtResource("1_mgiq0")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "<nil> / <nil>"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dt52wgj6bt60g"]
+[gd_scene load_steps=14 format=4 uid="uid://dt52wgj6bt60g"]
 
 [ext_resource type="Script" uid="uid://cqtmntjeykykj" path="res://ui/ui.gd" id="1_hxwew"]
 [ext_resource type="PackedScene" uid="uid://dtxlrkxsixvdt" path="res://proto/prototypes/proto_generator.tscn" id="1_xmm75"]
@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://cggab4dl7xuxh" path="res://ui/growth_label.gd" id="3_wf7rf"]
 [ext_resource type="Texture2D" uid="uid://dq3tt8g3qqren" path="res://proto/assets/rubbish.png" id="4_1qfk0"]
 [ext_resource type="PackedScene" uid="uid://dfqfyxu0bedwc" path="res://proto/prototypes/proto_upgrades.tscn" id="5_a6px5"]
-[ext_resource type="PackedScene" uid="uid://dv2jmda7j2v25" path="res://proto/prototypes/proto_grow_view.tscn" id="6_s15di"]
+[ext_resource type="PackedScene" uid="uid://dv2jmda7j2v25" path="res://proto/views/proto_grow_view.tscn" id="6_s15di"]
+[ext_resource type="PackedScene" uid="uid://cniwho0o02e06" path="res://proto/views/universe_view.tscn" id="11_1qfk0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwp23"]
 texture = ExtResource("2_au5f4")
@@ -85,20 +86,27 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 
 [node name="ProtoGenLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Gen"
 
 [node name="ProtoClickLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Click"
 
 [node name="ProtoUpgrades" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Upgrades"
 
 [node name="ProtoGrow" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Grow"
+
+[node name="UniverseLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Universe"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
@@ -149,6 +157,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ProtoGenerator" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("1_xmm75")]
+visible = false
 layout_mode = 1
 view = 1
 ui = NodePath("../../..")
@@ -165,12 +174,16 @@ view = 2
 ui = NodePath("../../..")
 
 [node name="ProtoGrowView" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("6_s15di")]
-visible = false
 layout_mode = 1
-view = 3
+view = 4
+ui = NodePath("../../..")
+
+[node name="UniverseView" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("11_1qfk0")]
+layout_mode = 1
 ui = NodePath("../../..")
 
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGenLink" to="." method="_on_proto_gen_link_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoClickLink" to="." method="_on_proto_click_link_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoUpgrades" to="." method="_on_proto_upgrades_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGrow" to="." method="_on_proto_grow_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/UniverseLink" to="." method="_on_universe_link_pressed"]

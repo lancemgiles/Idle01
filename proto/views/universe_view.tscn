@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://cniwho0o02e06"]
+
+[ext_resource type="Script" uid="uid://c6kpgpuhfrxal" path="res://proto/views/universe_view.gd" id="1_h4f66"]
+[ext_resource type="Script" uid="uid://bbaugv3o8xiss" path="res://proto/views/compo_active_effects.gd" id="2_c7grh"]
+[ext_resource type="PackedScene" uid="uid://cmsq8brlwbnwt" path="res://ui/growth_progress_bar.tscn" id="3_c7grh"]
+
+[node name="UniverseView" type="Control" node_paths=PackedStringArray("intro_text", "main_content")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4f66")
+intro_text = NodePath("IntroText")
+main_content = NodePath("MainMarginContainer")
+view = 3
+
+[node name="MainMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MainMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Universe"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MainMarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("food_per_second")]
+layout_mode = 2
+script = ExtResource("2_c7grh")
+food_per_second = NodePath("FoodPerSecondLabel")
+
+[node name="Label" type="Label" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Active Effects:"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FoodPerSecondLabel" type="RichTextLabel" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+bbcode_enabled = true
+text = "Food: <no value>"
+
+[node name="Space" type="Control" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="FoodMilestones" type="Label" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Progress towards next Growth"
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="GrowthProgressBar" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer3" instance=ExtResource("3_c7grh")]
+layout_mode = 2
+
+[node name="IntroText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -6.5
+offset_right = 91.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Your universe is inactive.
+Use Growth to activate it."

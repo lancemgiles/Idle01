@@ -5,6 +5,7 @@ class_name HandlerFoodGenerator extends Node
 static var ref : HandlerFoodGenerator
 
 var generator_power := 1
+signal generator_power_calculated
 
 ## Singleton check
 func _enter_tree() -> void:
@@ -37,6 +38,7 @@ func calculate_generator_power() -> void:
 	new_power += Main.ref.data.growth_upgrades.u_02_food_boost_level
 	
 	generator_power = new_power
+	generator_power_calculated.emit()
 
 
 func _on_timer_timeout() -> void:
