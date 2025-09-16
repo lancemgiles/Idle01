@@ -3,8 +3,6 @@ class_name Data extends Resource
 
 @export var food := 0
 
-@export var up_01_level := 0
-
 @export var growth := 1
 
 @export var growth_upgrades : DataGrowthUpgrades = DataGrowthUpgrades.new()

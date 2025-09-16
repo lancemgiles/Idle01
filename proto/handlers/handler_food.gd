@@ -31,8 +31,8 @@ func consume_food(quantity: int) -> Error:
 		Main.ref.data.food -= quantity
 		food_consumed.emit(quantity)
 	return Error.OK
-
-func trigger_clicker() -> void:
-	var quantity := 1
-	quantity += Main.ref.data.up_01_level
-	gather_food(quantity)
+#
+#func trigger_clicker() -> void:
+	#var quantity := 1
+	#quantity += Main.ref.data.up_01_level
+	#gather_food(quantity)
