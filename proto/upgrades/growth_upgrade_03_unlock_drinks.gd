@@ -4,18 +4,19 @@ var max_level := 1
 
 func _init() -> void:
 	level = Main.ref.data.growth_upgrades.u_03_unlock_drinks
-	title = "Unlock drinks."
 	base_cost = 2
 	cost = 2
 	
 	if is_unlocked() == false:
 		HandlerGrowthUpgrades.ref.u_01_food_generation.leveled_up.connect(_on_growth_upgrade_01_level_up)
 
+func title() -> String:
+	return "Unlock drinks."
 
 func description() -> String:
-	var text = "[b]Effects: [/b] unlocks the ability to have drinks."
+	var text = "Effects: Drink."
 	if level < max_level:
-		text += "\n[b]Cost: [/b] %s Growth" % cost
+		text += "\nCost: %s Growth" % cost
 	return text
 
 
@@ -50,3 +51,7 @@ func is_unlocked() -> bool:
 func _on_growth_upgrade_01_level_up() -> void:
 	HandlerGrowthUpgrades.ref.u_01_food_generation.leveled_up.disconnect(_on_growth_upgrade_01_level_up)
 	HandlerGrowthUpgrades.ref.upgrade_unlocked.emit(self)
+
+## Returns if the upgrade has been disabled.
+func disabled() -> bool:
+	return Main.ref.data.growth_upgrades.u_03_unlock_drinks

@@ -3,13 +3,15 @@ class_name Up01ClickerUpgrade extends Upgrade
 
 func _init() -> void:
 	level = Main.ref.data.up_01_level
-	title = "Clicker Upgrade"
 	base_cost = 5
 	calculate_cost()
 
+func title() -> String:
+	return "Clicker Upgrade"
+
 func description() -> String:
-	var _description = "Increases the amount of food created by the clicker."
-	_description += "\nEffects: +1 Food per level."
+	var _description = "More food/click."
+	_description += "\nEffects: +1 food/click."
 	_description += "\nCost: %s" % cost
 	return _description
 
@@ -19,7 +21,7 @@ func calculate_cost() -> void:
 func can_afford() -> bool:
 	if HandlerFood.ref.food() >= cost:
 		return true
-	else:
+	else: 
 		return false
 
 func level_up() -> void:

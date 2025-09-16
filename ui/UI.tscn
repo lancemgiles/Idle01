@@ -1,28 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://dt52wgj6bt60g"]
+[gd_scene load_steps=6 format=3 uid="uid://dt52wgj6bt60g"]
 
 [ext_resource type="Script" uid="uid://cqtmntjeykykj" path="res://ui/ui.gd" id="1_hxwew"]
-[ext_resource type="PackedScene" uid="uid://dtxlrkxsixvdt" path="res://proto/prototypes/proto_generator.tscn" id="1_xmm75"]
-[ext_resource type="Texture2D" uid="uid://b2b21wk4g3b3f" path="res://proto/tiles/tiles_32.png" id="2_au5f4"]
 [ext_resource type="Script" uid="uid://cslqbldx7jhwx" path="res://ui/food_label.gd" id="2_u132g"]
-[ext_resource type="Texture2D" uid="uid://cs15go48k70oc" path="res://proto/assets/main_mouse.png" id="3_mwp23"]
-[ext_resource type="PackedScene" uid="uid://dcxeqpn4t862x" path="res://proto/prototypes/proto_clicker.tscn" id="3_u132g"]
 [ext_resource type="Script" uid="uid://cggab4dl7xuxh" path="res://ui/growth_label.gd" id="3_wf7rf"]
-[ext_resource type="Texture2D" uid="uid://dq3tt8g3qqren" path="res://proto/assets/rubbish.png" id="4_1qfk0"]
-[ext_resource type="PackedScene" uid="uid://dfqfyxu0bedwc" path="res://proto/prototypes/proto_upgrades.tscn" id="5_a6px5"]
 [ext_resource type="PackedScene" uid="uid://dv2jmda7j2v25" path="res://proto/views/proto_grow_view.tscn" id="6_s15di"]
 [ext_resource type="PackedScene" uid="uid://cniwho0o02e06" path="res://proto/views/universe_view.tscn" id="11_1qfk0"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwp23"]
-texture = ExtResource("2_au5f4")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_1qfk0"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_mwp23")
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -31,21 +13,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_hxwew")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAMAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAEAAAADAAMAAAABAAEAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAAAAAkAAAABAAEAAAABAAQAAAAAAAEAAAABAAUAAAAAAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAAAAAEAAAABAAkAAAAAAAEAAAACAAQAAAABAAEAAAACAAUAAAABAAEAAAACAAYAAAAAAAEAAAACAAcAAAABAAEAAAACAAgAAAAAAAEAAAACAAkAAAAAAAEAAAADAAQAAAAAAAEAAAADAAUAAAAAAAEAAAADAAYAAAAAAAEAAAADAAcAAAAAAAEAAAADAAgAAAABAAEAAAADAAkAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAAAAAEAAAAEAAYAAAABAAEAAAAEAAcAAAAAAAEAAAAEAAgAAAAAAAEAAAAEAAkAAAABAAEAAAAFAAQAAAABAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAFAAcAAAABAAEAAAAFAAgAAAABAAEAAAAFAAkAAAABAAEAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAABAAAAAAAFAAIAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAAAAoAAAAAAAEAAAAAAAsAAAABAAEAAAABAAoAAAABAAEAAAABAAsAAAABAAEAAAACAAoAAAABAAEAAAACAAsAAAAAAAEAAAADAAoAAAABAAEAAAADAAsAAAABAAEAAAAEAAoAAAAAAAEAAAAEAAsAAAAAAAEAAAAFAAoAAAAAAAEAAAAFAAsAAAABAAEAAAAAAAwAAAAAAAEAAAAAAA0AAAAAAAEAAAABAAwAAAABAAEAAAABAA0AAAAAAAEAAAACAAwAAAABAAEAAAACAA0AAAABAAEAAAADAAwAAAABAAEAAAADAA0AAAABAAEAAAAEAAwAAAABAAEAAAAEAA0AAAABAAEAAAAFAAwAAAAAAAEAAAAFAA0AAAABAAEAAAA=")
-tile_set = SubResource("TileSet_1qfk0")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(67, 107)
-texture = ExtResource("3_mwp23")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(128, 128)
-texture = ExtResource("4_1qfk0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,24 +26,41 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="LeftPanel" type="Control" parent="HBoxContainer"]
-custom_minimum_size = Vector2(48, 0)
+[node name="MainView" type="Control" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel"]
+[node name="ProtoGrowView" parent="VBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("6_s15di")]
+layout_mode = 1
+view = 1
+ui = NodePath("../../..")
+
+[node name="UniverseView" parent="VBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("11_1qfk0")]
+layout_mode = 1
+view = 0
+ui = NodePath("../../..")
+
+[node name="LeftPanel" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LeftPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="Navigator" type="Control" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+[node name="Navigator" type="Control" parent="VBoxContainer/LeftPanel/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LeftPanel/HBoxContainer/Navigator"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -82,45 +71,31 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer"]
 layout_mode = 2
 
-[node name="ProtoGenLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Gen"
-
-[node name="ProtoClickLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Click"
-
-[node name="ProtoUpgrades" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Upgrades"
-
-[node name="ProtoGrow" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+[node name="ProtoGrow" type="LinkButton" parent="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Grow"
 
-[node name="UniverseLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+[node name="UniverseLink" type="LinkButton" parent="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Universe"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LeftPanel/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/LeftPanel/VBoxContainer/MarginContainer"]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/LeftPanel/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Resources" type="Control" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+[node name="Resources" type="Control" parent="VBoxContainer/LeftPanel/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/LeftPanel/HBoxContainer/Resources"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,58 +107,17 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/LeftPanel/HBoxContainer/Resources/MarginContainer"]
 layout_mode = 2
 
-[node name="GrowthLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer/VBoxContainer"]
+[node name="GrowthLabel" type="Label" parent="VBoxContainer/LeftPanel/HBoxContainer/Resources/MarginContainer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("3_wf7rf")
 
-[node name="FoodLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer/VBoxContainer"]
+[node name="FoodLabel" type="Label" parent="VBoxContainer/LeftPanel/HBoxContainer/Resources/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "food: x"
 script = ExtResource("2_u132g")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="MainView" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ProtoGenerator" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("1_xmm75")]
-visible = false
-layout_mode = 1
-view = 1
-ui = NodePath("../../..")
-
-[node name="ProtoClicker" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("3_u132g")]
-visible = false
-layout_mode = 1
-ui = NodePath("../../..")
-
-[node name="ProtoUpgrades" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("5_a6px5")]
-visible = false
-layout_mode = 1
-view = 2
-ui = NodePath("../../..")
-
-[node name="ProtoGrowView" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("6_s15di")]
-layout_mode = 1
-view = 4
-ui = NodePath("../../..")
-
-[node name="UniverseView" parent="HBoxContainer/MainView" node_paths=PackedStringArray("ui") instance=ExtResource("11_1qfk0")]
-layout_mode = 1
-ui = NodePath("../../..")
-
-[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGenLink" to="." method="_on_proto_gen_link_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoClickLink" to="." method="_on_proto_click_link_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoUpgrades" to="." method="_on_proto_upgrades_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGrow" to="." method="_on_proto_grow_pressed"]
-[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/UniverseLink" to="." method="_on_universe_link_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGrow" to="." method="_on_proto_grow_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/UniverseLink" to="." method="_on_universe_link_pressed"]

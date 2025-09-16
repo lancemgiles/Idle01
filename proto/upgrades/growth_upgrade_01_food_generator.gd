@@ -5,15 +5,17 @@ var max_level := 1
 
 func _init() -> void:
 	level = Main.ref.data.growth_upgrades.u_01_food_generator_level
-	title = "Graze"
 	base_cost = 1
 	calculate_cost()
+	
+func title() -> String:
+	return "Graze"
 
 func description() -> String:
 	var text := "Eat continuously."
-	text += "\n[b]Effect: [/b] passive food gathering"
+	text += "\nEffect: passive food gathering"
 	if level < max_level:
-		text += "\n[b]Cost: [b] %s Growth" % cost
+		text += "\nCost: %s Growth" % cost
 	return text
 
 func calculate_cost() -> void:
@@ -41,3 +43,7 @@ func level_up() -> void:
 ## Virtual class, returns whether or not upgrade has been unlocked.
 func is_unlocked() -> bool:
 	return true
+	
+## Returns if the upgrade has been disabled.
+func disabled() -> bool:
+	return Main.ref.data.growth_upgrades.u_01_food_generator_level

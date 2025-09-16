@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bxcaenmd8j2he" path="res://proto/upgrades/components/compo_upgrade.gd" id="1_iiufi"]
 
-[node name="CompoUpgrade" type="Control" node_paths=PackedStringArray("label_title", "label_description", "button")]
-custom_minimum_size = Vector2(0, 64)
+[node name="CompoUpgrade" type="Control" node_paths=PackedStringArray("label_title", "label_description", "button", "veil")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
 anchors_preset = 14
 anchor_top = 0.5
@@ -12,26 +12,31 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iiufi")
-label_title = NodePath("MarginContainer/HBoxContainer/Info/VBoxContainer/Title")
-label_description = NodePath("MarginContainer/HBoxContainer/Info/VBoxContainer/Description")
-button = NodePath("MarginContainer/HBoxContainer/PurchaseButton")
+label_title = NodePath("ScrollContainer/Panel/MarginContainer/HBoxContainer/Info/VBoxContainer/Title")
+label_description = NodePath("ScrollContainer/Panel/MarginContainer/HBoxContainer/Info/VBoxContainer/Description")
+button = NodePath("ScrollContainer/Panel/MarginContainer/HBoxContainer/PurchaseButton")
+veil = NodePath("Veil")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = 10.0
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 8
@@ -39,31 +44,30 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Info" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Info" type="Control" parent="ScrollContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Info"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Panel/MarginContainer/HBoxContainer/Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -9.0
-offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Info/VBoxContainer"]
+[node name="Title" type="Label" parent="ScrollContainer/Panel/MarginContainer/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 16
 text = "upgrade_title"
 horizontal_alignment = 1
 
-[node name="Description" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Info/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="ScrollContainer/Panel/MarginContainer/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 16
@@ -73,10 +77,20 @@ Effect:
 Cost: "
 fit_content = true
 
-[node name="PurchaseButton" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="PurchaseButton" type="Button" parent="ScrollContainer/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 text = "buy"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[node name="Veil" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.760784)
+
+[connection signal="pressed" from="ScrollContainer/Panel/MarginContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]

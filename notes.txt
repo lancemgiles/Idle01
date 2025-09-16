@@ -32,12 +32,23 @@ GRAPHICS
 		same for the tiles - 32x32 can look great but is probably too big and too detailed for my goal with this project
 		16x16 sprites and items with 16x16 tiles
 		currently using nanner 32 palette
+	functional UI requires a larger canvas. A sentence takes up the whole screen -> changed to 270x540
 			
 	NEW:
 		sticking to my placeholder resources might be fun where it just about gathering food and drinks and any story stuff is just implied (mostly finding fruit and vegetables but sometimes old cans of beans and ancient spices)
 		cooking mini games
 		optional ads for gathering speed boosts
 		can leave mouse protagonist as but no larger world is really required to get this off the ground
+	NEWER:
+		idea: player is a goat, basically all tiles have an edible layer
+			unlock ability to eat more things
+			no deeper goal, the goat just eats to eat
+			unlock automatic feeding where the goat will move to any edible tile within a given range
+				this range can get further upgraded
+				this means the player can be more hands off to complete levels
+			levels are completed when everything has been eaten
+				they get larger as levels progress
+				they become more maze-like so doing them automatically requires carefully selecting upgrades
 	
 LOGIC:
 	tilemap level showing vague, liquidy environments that vary across levels
