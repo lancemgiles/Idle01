@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://h1fsuhih6e55"]
+
+[ext_resource type="Script" uid="uid://cfpry2fu6ew31" path="res://proto/views/drinks/compo_drink.gd" id="1_k1jg8"]
+
+[node name="Drinks" type="VBoxContainer" node_paths=PackedStringArray("label_name", "label_composition", "consumption_slider")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1jg8")
+label_name = NodePath("DrinkName")
+label_composition = NodePath("Composition")
+consumption_slider = NodePath("MarginContainer2/HSlider")
+
+[node name="DrinkName" type="Label" parent="."]
+layout_mode = 2
+text = "Drink Name"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Composition" type="Label" parent="."]
+layout_mode = 2
+text = "Food: <nil>"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HSlider" type="HSlider" parent="MarginContainer2"]
+layout_mode = 2
+max_value = 5.0
+
+[connection signal="value_changed" from="MarginContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

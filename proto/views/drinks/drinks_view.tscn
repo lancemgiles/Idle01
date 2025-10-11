@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx6ayyw4msidm"]
+
+[ext_resource type="Script" uid="uid://c20ltcf7sx8o5" path="res://proto/views/drinks/drinks_view.gd" id="1_tro6m"]
+[ext_resource type="PackedScene" uid="uid://h1fsuhih6e55" path="res://proto/views/drinks/drink.tscn" id="2_xxxsg"]
+
+[node name="DrinksView" type="Control" node_paths=PackedStringArray("main_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tro6m")
+main_list = NodePath("MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/MainList")
+scene_drink = ExtResource("2_xxxsg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Drinks"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MainList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CreateDrinkButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/MainList"]
+layout_mode = 2
+text = "Create new drink"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/MainList"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/MainList/MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/MainList/CreateDrinkButton" to="." method="_on_create_drink_button_pressed"]

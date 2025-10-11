@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cniwho0o02e06"]
 
-[ext_resource type="Script" uid="uid://c6kpgpuhfrxal" path="res://proto/views/universe_view.gd" id="1_h4f66"]
+[ext_resource type="Script" uid="uid://c6kpgpuhfrxal" path="res://proto/views/universe/universe_view.gd" id="1_h4f66"]
 [ext_resource type="Script" uid="uid://bbaugv3o8xiss" path="res://proto/views/compo_active_effects.gd" id="2_c7grh"]
 [ext_resource type="PackedScene" uid="uid://cmsq8brlwbnwt" path="res://ui/growth_progress_bar.tscn" id="3_c7grh"]
 

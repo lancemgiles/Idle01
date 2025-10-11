@@ -8,3 +8,5 @@ class_name Data extends Resource
 @export var growth_upgrades : DataGrowthUpgrades = DataGrowthUpgrades.new()
 
 @export var universe : DataUniverse = DataUniverse.new()
+
+@export var drinks : Array[DataDrink] = []
