@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv2jmda7j2v25"]
+[gd_scene load_steps=8 format=3 uid="uid://dv2jmda7j2v25"]
 
 [ext_resource type="Script" uid="uid://05ssfcumot16" path="res://proto/views/proto_grow_view.gd" id="1_hujf3"]
 [ext_resource type="PackedScene" uid="uid://cllakustggs0k" path="res://proto/upgrades/components/compo_upgrade.tscn" id="2_hweh3"]
+[ext_resource type="Texture2D" uid="uid://dgegaiqtmh0vv" path="res://proto/question_mark.png" id="3_cs1ix"]
 [ext_resource type="PackedScene" uid="uid://cmsq8brlwbnwt" path="res://ui/growth_progress_bar.tscn" id="3_e0jyx"]
+[ext_resource type="PackedScene" uid="uid://f4tiqnp8tflm" path="res://addons/mobile/signals_manager/signals_manager.tscn" id="5_p2ejp"]
+[ext_resource type="Script" uid="uid://bxgum42d6752l" path="res://addons/mobile/signals_manager/signals_manager.gd" id="6_yjtfj"]
+[ext_resource type="LabelSettings" uid="uid://dwb741slqxxk6" path="res://addons/mobile/themes/tooltip_font.tres" id="7_yjtfj"]
 
 [node name="ProtoGrowView" type="Control" node_paths=PackedStringArray("growth_up_area")]
 layout_mode = 3
@@ -31,10 +35,31 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"HeaderLarge"
 text = "Growth Upgrades"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+tooltip_text = "Growth is obtained
+by generating food.
+
+Each growth requires
+more food.
+
+Food can be
+spent on drinks."
+texture = ExtResource("3_cs1ix")
+stretch_mode = 2
+metadata/signals_manager_path = "../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -51,3 +76,19 @@ layout_mode = 2
 
 [node name="GrowthProgressBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_e0jyx")]
 layout_mode = 2
+
+[node name="mobile_plugin_signals_manager" type="Node" parent="." instance=ExtResource("5_p2ejp")]
+editor_description = "The mobile plugin uses this node to store node connections. It is an internal node. If you delete this node, it will be recreated, but any connections you made through the mobile plugin will be lost. The node must be a direct child of the scene root and have the same name as found in \"mobile.gd\".CONNECTOR"
+script = ExtResource("6_yjtfj")
+metadata/tooltip_overrides = {
+"../MarginContainer/VBoxContainer/HBoxContainer/TextureRect": {
+"mobile/tooltip/configuration/display_on_single_touch": true,
+"mobile/tooltip/configuration/hide_after_sec": 5.0,
+"mobile/tooltip/mobile/tooltip/display/font": ExtResource("7_yjtfj")
+}
+}
+metadata/help_bar_overrides = {}
+
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/TextureRect" to="mobile_plugin_signals_manager" method="_on_tooltip_gui_input" binds= [{
+"requester": "../MarginContainer/VBoxContainer/HBoxContainer/TextureRect"
+}]]

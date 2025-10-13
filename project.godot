@@ -24,6 +24,10 @@ window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mobile/plugin.cfg")
+
 [gui]
 
 theme/custom="uid://b4jl86103bh4f"
