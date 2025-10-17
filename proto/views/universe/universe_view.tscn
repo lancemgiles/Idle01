@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cniwho0o02e06"]
+[gd_scene load_steps=6 format=3 uid="uid://cniwho0o02e06"]
 
 [ext_resource type="Script" uid="uid://c6kpgpuhfrxal" path="res://proto/views/universe/universe_view.gd" id="1_h4f66"]
 [ext_resource type="Script" uid="uid://bbaugv3o8xiss" path="res://proto/views/compo_active_effects.gd" id="2_c7grh"]
 [ext_resource type="PackedScene" uid="uid://cmsq8brlwbnwt" path="res://ui/growth_progress_bar.tscn" id="3_c7grh"]
+[ext_resource type="PackedScene" uid="uid://f4tiqnp8tflm" path="res://addons/mobile/signals_manager/signals_manager.tscn" id="4_te26m"]
+[ext_resource type="Script" uid="uid://bxgum42d6752l" path="res://addons/mobile/signals_manager/signals_manager.gd" id="5_l11gm"]
 
 [node name="UniverseView" type="Control" node_paths=PackedStringArray("intro_text", "main_content")]
 layout_mode = 3
@@ -15,6 +17,8 @@ script = ExtResource("1_h4f66")
 intro_text = NodePath("IntroText")
 main_content = NodePath("MainMarginContainer")
 view = 3
+metadata/signals_manager_path = "mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="MainMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -63,6 +67,8 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 bbcode_enabled = true
 text = "Food: <no value>"
+metadata/signals_manager_path = "../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="Space" type="Control" parent="MainMarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
@@ -103,3 +109,9 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "Your universe is inactive.
 Use Growth to activate it."
+
+[node name="mobile_plugin_signals_manager" type="Node" parent="." instance=ExtResource("4_te26m")]
+editor_description = "The mobile plugin uses this node to store node connections. It is an internal node. If you delete this node, it will be recreated, but any connections you made through the mobile plugin will be lost. The node must be a direct child of the scene root and have the same name as found in \"mobile.gd\".CONNECTOR"
+script = ExtResource("5_l11gm")
+metadata/tooltip_overrides = {}
+metadata/help_bar_overrides = {}

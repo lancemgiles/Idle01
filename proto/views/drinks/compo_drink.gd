@@ -27,9 +27,7 @@ func update_label_name() -> void:
 	
 func update_label_composition() -> void:
 	var text = "Food: %s" % drink.food
-	
-	if drink.refined_food:
-		text += "\nRefined food: %s" % drink.refined_food
+	text += "\nRefined food: %s" % drink.refined_food
 	label_composition.text = text
 	
 func update_attraction_slider() -> void:

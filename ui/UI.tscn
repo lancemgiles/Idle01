@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt52wgj6bt60g"]
+[gd_scene load_steps=10 format=3 uid="uid://dt52wgj6bt60g"]
 
 [ext_resource type="Script" uid="uid://cqtmntjeykykj" path="res://ui/ui.gd" id="1_hxwew"]
 [ext_resource type="Script" uid="uid://cslqbldx7jhwx" path="res://ui/food_label.gd" id="2_u132g"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dv2jmda7j2v25" path="res://proto/views/proto_grow_view.tscn" id="6_s15di"]
 [ext_resource type="PackedScene" uid="uid://f4tiqnp8tflm" path="res://addons/mobile/signals_manager/signals_manager.tscn" id="8_au5f4"]
 [ext_resource type="Script" uid="uid://bval16rs4m2wj" path="res://ui/refined_food_label.gd" id="8_mwp23"]
-[ext_resource type="Script" uid="uid://bxgum42d6752l" path="res://addons/mobile/signals_manager/signals_manager.gd" id="9_mwp23"]
 [ext_resource type="PackedScene" uid="uid://cniwho0o02e06" path="res://proto/views/universe/universe_view.tscn" id="11_1qfk0"]
 
 [node name="Ui" type="Control"]
@@ -145,11 +144,7 @@ script = ExtResource("8_mwp23")
 metadata/signals_manager_path = "../../../../../../../mobile_plugin_signals_manager"
 metadata/tooltip_on_mobile = false
 
-[node name="mobile_plugin_signals_manager" type="Node" parent="." instance=ExtResource("8_au5f4")]
-editor_description = "The mobile plugin uses this node to store node connections. It is an internal node. If you delete this node, it will be recreated, but any connections you made through the mobile plugin will be lost. The node must be a direct child of the scene root and have the same name as found in \"mobile.gd\".CONNECTOR"
-script = ExtResource("9_mwp23")
-metadata/tooltip_overrides = {}
-metadata/help_bar_overrides = {}
+[node name="mobile_plugin_signals_manager" parent="." instance=ExtResource("8_au5f4")]
 
 [connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGrow" to="." method="_on_proto_grow_pressed"]
 [connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/UniverseLink" to="." method="_on_universe_link_pressed"]

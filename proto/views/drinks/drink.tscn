@@ -20,6 +20,8 @@ metadata/tooltip_on_mobile = false
 [node name="DrinkName" type="Label" parent="."]
 layout_mode = 2
 text = "Drink Name"
+metadata/signals_manager_path = "../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

@@ -11,6 +11,8 @@ func _enter_tree() -> void:
 	else: queue_free()
 
 signal drink_created
+signal drink_effect_updated
+signal effect_food_consumption_updated
 
 @export var timer : Timer
 
@@ -22,6 +24,9 @@ var min_attraction_value := 1
 var max_attraction_value := 5
 var min_release_value := 1
 var max_release_value := 5
+
+var effect_food_generation := 0
+var effect_food_consumed := 0
 
 func _ready() -> void:
 	load_drinks()
@@ -44,6 +49,7 @@ func load_drinks() -> void:
 		timer.timeout.connect(new_drink._on_drink_timer_timeout)
 		
 		drinks.append(new_drink)
+	calculate_effect_food_consumed()
 
 func get_all_drinks() -> Array[Drinks]:
 	return drinks
@@ -66,14 +72,38 @@ func create_drink() -> Error:
 	data_drink.release_value = new_drink.release_value
 	Main.ref.data.drinks.append(data_drink)
 	
+	calculate_effect_food_consumed()
+	
 	drink_created.emit()
 	return Error.OK
 
 ## Change food consumption value for a single drink.
-func update_drink_attraction_value(index : int, value : int) -> void:
+func update_drink_food_attraction_value(index : int, value : int) -> void:
 	drinks[index].attraction_value = value
 	Main.ref.data.drinks[index].attraction_value = value
+	calculate_effect_food_consumed()
 
 func update_drink_release_value(index : int, value : int) -> void:
 	drinks[index].release_value = value
 	Main.ref.data.drinks[index].release_value = value
+
+## Add all Drink effects into a single property.
+func calculate_drink_effect_food_generation() -> void:
+	var old_effect : int = effect_food_generation
+	var new_effect := 0
+	for drink : Drinks in drinks:
+		new_effect += drink.effect_food_generation
+	effect_food_generation = new_effect
+	
+	if new_effect != old_effect:
+		drink_effect_updated.emit()
+		
+func calculate_effect_food_consumed() -> void:
+	var old_effect : int = effect_food_consumed
+	var new_effect := 0
+	for drink : Drinks in drinks:
+		new_effect += drink.attraction_value
+		
+	effect_food_consumed = new_effect
+	if effect_food_consumed != old_effect:
+		effect_food_consumption_updated.emit()

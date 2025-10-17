@@ -17,6 +17,8 @@ var attraction_value := 1
 var refined_food := 0
 ## Amount of refined food being released.
 var release_value := 1
+## Modifier applied to food generation/gathering
+var effect_food_generation := 0
 
 ## Tries to consume food.
 func attract_food() -> void:
@@ -29,14 +31,25 @@ func attract_food() -> void:
 
 
 func refine_food() -> void:
-	if food >= 25:
+	var refined_food_to_create := -1
+	if food >= 100:
+		var error : Error = consume_food(9)
+		if error: return
+		
+		refined_food_to_create = 5
+	
+	elif food >= 25:
 		var error : Error = consume_food(3)
 		if error: return
 		
-		var refined_food_to_create := 2
+		refined_food_to_create = 2
+		
+	if refined_food_to_create != -1:
 		refined_food += refined_food_to_create
 		Main.ref.data.universe.refined_food += refined_food_to_create
 		Main.ref.data.drinks[data_index].refined_food = refined_food
+		calculate_effect_food_generation()
+		composition_updated.emit()
 		
 		
 func consume_food(quantity : int) -> Error:
@@ -50,7 +63,7 @@ func consume_refined_food(quantity : int) -> Error:
 	if refined_food >= quantity:
 		refined_food -= quantity
 		Main.ref.data.drinks[data_index].refined_food = refined_food
-		composition_updated.emit()
+		calculate_effect_food_generation()
 		return Error.OK
 		
 	return Error.FAILED
@@ -65,6 +78,15 @@ func release_refined_food() -> void:
 	if error:
 		return
 	HandlerRefinedFood.ref.create_refined_food(quantity)
+
+func calculate_effect_food_generation() -> void:
+	var old_effect : int = effect_food_generation
+	if refined_food >= 25:
+		effect_food_generation = 1
+	if refined_food >= 100:
+		effect_food_generation = 2
+	if effect_food_generation != old_effect:
+		HandlerDrinks.ref.calculate_drink_effect_food_generation()
 
 func _on_drink_timer_timeout() -> void:
 	attract_food()
