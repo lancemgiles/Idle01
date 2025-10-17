@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2isa82sqwxbf"]
+[gd_scene load_steps=9 format=3 uid="uid://b2isa82sqwxbf"]
 
 [ext_resource type="Script" uid="uid://cc11qj4ukcd5y" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dt52wgj6bt60g" path="res://ui/UI.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://igcuj7x84yui" path="res://proto/handlers/handler_growth_upgrades.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://bdbawydmb1dac" path="res://proto/handlers/handler_food_generator.gd" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://dsokkmf1hf431" path="res://proto/handlers/handler_drinks.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://dlb4sx81frgoj" path="res://proto/handlers/handler_refined_food.gd" id="8_5vw27"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -35,6 +36,9 @@ timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Handlers/Drinks"]
 autostart = true
+
+[node name="RefinedFood" type="Node" parent="Handlers"]
+script = ExtResource("8_5vw27")
 
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 5.0

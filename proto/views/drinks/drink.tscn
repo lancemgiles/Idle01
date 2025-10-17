@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://h1fsuhih6e55"]
+[gd_scene load_steps=3 format=3 uid="uid://h1fsuhih6e55"]
 
 [ext_resource type="Script" uid="uid://cfpry2fu6ew31" path="res://proto/views/drinks/compo_drink.gd" id="1_k1jg8"]
+[ext_resource type="PackedScene" uid="uid://f4tiqnp8tflm" path="res://addons/mobile/signals_manager/signals_manager.tscn" id="2_08bd4"]
 
-[node name="Drinks" type="VBoxContainer" node_paths=PackedStringArray("label_name", "label_composition", "consumption_slider")]
+[node name="Drinks" type="VBoxContainer" node_paths=PackedStringArray("label_name", "label_composition", "attraction_slider", "release_slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +12,10 @@ grow_vertical = 2
 script = ExtResource("1_k1jg8")
 label_name = NodePath("DrinkName")
 label_composition = NodePath("Composition")
-consumption_slider = NodePath("MarginContainer2/HSlider")
+attraction_slider = NodePath("MarginContainer3/VBoxContainer/MarginContainer2/HBoxContainer/AttractionSlider")
+release_slider = NodePath("MarginContainer3/VBoxContainer/MarginContainer3/HBoxContainer/ReleaseSlider")
+metadata/signals_manager_path = "mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="DrinkName" type="Label" parent="."]
 layout_mode = 2
@@ -23,6 +27,8 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
+metadata/signals_manager_path = "../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer"]
 layout_mode = 2
@@ -30,17 +36,105 @@ layout_mode = 2
 [node name="Composition" type="Label" parent="."]
 layout_mode = 2
 text = "Food: <nil>"
+metadata/signals_manager_path = "../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
+metadata/signals_manager_path = "../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+metadata/signals_manager_path = "../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="Label" type="Label" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Consumption"
+horizontal_alignment = 1
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
-[node name="HSlider" type="HSlider" parent="MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-max_value = 5.0
-scrollable = false
+metadata/signals_manager_path = "../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
-[connection signal="value_changed" from="MarginContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
+[node name="Min" type="Label" parent="MarginContainer3/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "1"
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="AttractionSlider" type="HSlider" parent="MarginContainer3/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+scrollable = false
+metadata/signals_manager_path = "../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="Max" type="Label" parent="MarginContainer3/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "5"
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="Label2" type="Label" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Refined food release:"
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+metadata/signals_manager_path = "../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="Min" type="Label" parent="MarginContainer3/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+text = "1"
+metadata/signals_manager_path = "../../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="ReleaseSlider" type="HSlider" parent="MarginContainer3/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+scrollable = false
+metadata/signals_manager_path = "../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="Max" type="Label" parent="MarginContainer3/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+text = "5"
+metadata/signals_manager_path = "../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="mobile_plugin_signals_manager" parent="." instance=ExtResource("2_08bd4")]
+
+[connection signal="value_changed" from="MarginContainer3/VBoxContainer/MarginContainer2/HBoxContainer/AttractionSlider" to="." method="_on_attraction_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer3/VBoxContainer/MarginContainer3/HBoxContainer/ReleaseSlider" to="." method="_on_release_slider_value_changed"]

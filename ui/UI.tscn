@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt52wgj6bt60g"]
+[gd_scene load_steps=11 format=3 uid="uid://dt52wgj6bt60g"]
 
 [ext_resource type="Script" uid="uid://cqtmntjeykykj" path="res://ui/ui.gd" id="1_hxwew"]
 [ext_resource type="Script" uid="uid://cslqbldx7jhwx" path="res://ui/food_label.gd" id="2_u132g"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dq5ivpjkswg0u" path="res://ui/drinks_link_button.gd" id="4_s15di"]
 [ext_resource type="PackedScene" uid="uid://bx6ayyw4msidm" path="res://proto/views/drinks/drinks_view.tscn" id="4_wf7rf"]
 [ext_resource type="PackedScene" uid="uid://dv2jmda7j2v25" path="res://proto/views/proto_grow_view.tscn" id="6_s15di"]
+[ext_resource type="PackedScene" uid="uid://f4tiqnp8tflm" path="res://addons/mobile/signals_manager/signals_manager.tscn" id="8_au5f4"]
+[ext_resource type="Script" uid="uid://bval16rs4m2wj" path="res://ui/refined_food_label.gd" id="8_mwp23"]
+[ext_resource type="Script" uid="uid://bxgum42d6752l" path="res://addons/mobile/signals_manager/signals_manager.gd" id="9_mwp23"]
 [ext_resource type="PackedScene" uid="uid://cniwho0o02e06" path="res://proto/views/universe/universe_view.tscn" id="11_1qfk0"]
 
 [node name="Ui" type="Control"]
@@ -18,6 +21,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_hxwew")
+metadata/signals_manager_path = "mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -130,6 +135,21 @@ script = ExtResource("3_wf7rf")
 layout_mode = 2
 text = "food: x"
 script = ExtResource("2_u132g")
+metadata/signals_manager_path = "../../../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="RefinedFoodLabel" type="Label" parent="VBoxContainer/LeftPanel/HBoxContainer/Resources/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Refined: x"
+script = ExtResource("8_mwp23")
+metadata/signals_manager_path = "../../../../../../../mobile_plugin_signals_manager"
+metadata/tooltip_on_mobile = false
+
+[node name="mobile_plugin_signals_manager" type="Node" parent="." instance=ExtResource("8_au5f4")]
+editor_description = "The mobile plugin uses this node to store node connections. It is an internal node. If you delete this node, it will be recreated, but any connections you made through the mobile plugin will be lost. The node must be a direct child of the scene root and have the same name as found in \"mobile.gd\".CONNECTOR"
+script = ExtResource("9_mwp23")
+metadata/tooltip_overrides = {}
+metadata/help_bar_overrides = {}
 
 [connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtoGrow" to="." method="_on_proto_grow_pressed"]
 [connection signal="pressed" from="VBoxContainer/LeftPanel/HBoxContainer/Navigator/MarginContainer/VBoxContainer/UniverseLink" to="." method="_on_universe_link_pressed"]

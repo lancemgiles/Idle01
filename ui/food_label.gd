@@ -7,4 +7,7 @@ func _ready() -> void:
 	HandlerFood.ref.food_consumed.connect(update_label_text)
 	
 func update_label_text(_quantity: int = -1) -> void:
-	text = "Food: %s" % HandlerFood.ref.food()
+	if HandlerFood.ref.food():
+		text = "Food: %s" % HandlerFood.ref.food()
+	else:
+		text = " "
